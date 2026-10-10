@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SANCTITY — Home</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+
+  <style>
+    /* Reset and Base */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    .page-wrapper {
+      position: relative;
+      min-height: 100vh;
+      background: transparent;
+      overflow-x: hidden;
+    }
+
+    #home-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(74, 122, 74, 0.24), rgba(255, 255, 255, 0.94));
+    }
+
+    #home-bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      padding: 20px 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .content-section {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .hero-section {
+      padding: 8vh 10% 40px;
+      background: #d8d8d8;
+      border-radius: 32px;
+      border: 1px solid rgba(15, 15, 15, 0.12);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.14);
+    }
+
+    .hero-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(55px, 10vw, 130px);
+      letter-spacing: 2px;
+      line-height: 0.9;
+      color: #000000;
+      margin-bottom: 25px;
+      font-weight: 900;
+    }
+
+    .hero-subtext {
+      font-size: clamp(15px, 1.4vw, 19px);
+      line-height: 1.8;
+      color: #000000;
+      max-width: 900px;
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+
+    #home-middle-image {
+      width: 100%;
+      aspect-ratio: 21 / 8; /* Wider cinematic ratio for PC */
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      background: #e8e8e0;
+      border-top: 2px dashed #bbb;
+      border-bottom: 2px dashed #bbb;
+    }
+
+    #home-middle-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .dignity-section {
+      padding: 0;
+    }
+
+    .section-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(32px, 5vw, 55px);
+      margin-bottom: 20px;
+      color: #0a0a0a;
+      font-weight: 700;
+    }
+
+    .body-text {
+      font-size: clamp(17px, 1.2vw, 18px);
+      line-height: 1.9;
+      color: #1a1a1a;
+      max-width: 1000px;
+      font-weight: 500;
+    }
+
+    footer {
+      position: relative;
+      z-index: 2;
+      padding: 40px 10%;
+      text-align: center;
+      font-size: 13px;
+      color: #666;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Tablet and Mobile Adjustments */
+    @media (max-width: 768px) {
+      nav { padding: 15px 20px; }
+      .hero-section { padding: 40px 20px 30px; }
+      .dignity-section { padding: 40px 20px; }
+      #home-middle-image { aspect-ratio: 16 / 9; } /* More height for mobile */
+      #home-background { border-width: 3px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <div id="home-background"></div>
+  <div id="home-bg-overlay"></div>
+
+  <div class="page-section">
+    <div class="container">
+      <nav>
+        <a class="nav-logo" href="home.html">SANCTITY</a>
+        <div class="nav-links">
+          <a href="home.html">HOME</a>
+          <a href="artworks.html">ARTWORKS</a>
+          <a href="involved.html">SHARE YOUR STORY</a>
+          <a href="about.html">ABOUT US</a>
+          <a href="wall.html" class="nav-wall">FREEDOM WALL</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container content-panel hero-section">
+      <h1 class="hero-headline">SEEN. HEARD. VALUED.</h1>
+      <p class="hero-subtext">
+        Every person deserves respect—not because of what they have or what they can do,
+        but because they are human. This space shares stories and artworks that remind us
+        to treat others with kindness, empathy, and dignity in everyday life—both offline and online.
+      </p>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container">
+      <div id="home-middle-image">
+        <img src="bg/mainphoto1.jpg" alt="photo"/>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container content-panel dignity-section">
+      <h2 class="section-heading">WHAT IS HUMAN DIGNITY?</h2>
+      <p class="body-text">
+        Human dignity means recognizing that every person has value simply because they are human.
+        It is not earned through achievements, status, or background—it is something everyone already has.
+        This dignity is reflected in the way we speak, act, and treat others in our daily lives.
+        It shows in small choices: using respectful language, being patient, and choosing to understand
+        rather than judge. Respecting human dignity means avoiding harmful behavior such as discrimination,
+        bullying, or exclusion. It also means standing up for others when their dignity is threatened,
+        and creating spaces where everyone feels safe, seen, and valued.
+      </p>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container">
+      <div id="home-middle-image">
+        <img src="bg/mainphoto2.jpg" alt="photo"/>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 SANCTITY — Project Dignidad · University of La Salette
+  </footer>
+
+</div>
+</body>
+</html>

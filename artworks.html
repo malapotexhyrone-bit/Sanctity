@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SANCTITY — Artworks</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+
+  <style>
+    /* Background and Base */
+    body {
+      background: linear-gradient(180deg, rgba(74, 122, 74, 0.24), rgba(255, 255, 255, 0.94));
+    }
+
+    .page-intro {
+      background: #d8d8d8;
+      padding: 60px 40px 20px;
+    }
+    .page-intro p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #000000;
+      max-width: 740px;
+      margin: 0 auto 60px;
+      font-weight: 600;
+    }
+    .artwork-entry {
+      padding: 48px 40px;
+      background: #ffffff;
+      margin-bottom: 0;
+      border-bottom: 2px solid #0f0f0f;
+    }
+    .artwork-entry:nth-child(odd) {
+      background: #ffffff;
+    }
+    .artwork-entry:nth-child(even) {
+      background: #f5f5f5;
+    }
+    .artwork-entry:last-of-type {
+      border-bottom: none;
+    }
+
+    .artwork-row {
+      display: grid;
+      grid-template-columns: 0.6fr 1.4fr; 
+      gap: 48px;
+      align-items: start;
+    }
+    .artwork-row.reverse {
+      direction: rtl;
+    }
+    .artwork-row.reverse > * {
+      direction: ltr;
+    }
+
+    .artwork-image-container {
+      max-width: 350px;
+      width: 100%;
+      position: relative; 
+    }
+    
+    .artwork-image {
+      border: 3px solid #3a8a3a;
+      background: #f0f0ea;
+      padding: 0;                
+      overflow: hidden;
+      aspect-ratio: 1 / 1;       
+      cursor: pointer;
+      display: block;
+    }
+    
+    .artwork-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;         
+      object-position: center;
+      transition: transform 0.5s ease, filter 0.3s ease;
+    }
+
+    .artwork-image-container:hover img {
+      transform: scale(1.05);
+      filter: brightness(0.8);
+    }
+
+    .view-button {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(255, 255, 255, 0.9);
+      color: #0f0f0f;
+      padding: 10px 20px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 2px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      pointer-events: none; 
+      transition: all 0.3s ease;
+      white-space: nowrap;
+      opacity: 0.9;
+    }
+
+    .artwork-image-container:hover .view-button {
+      background-color: #3a8a3a;
+      color: #ffffff;
+      opacity: 1;
+    }
+
+    .artwork-text {
+      padding-top: 8px;
+      display: flex;
+      flex-direction: column;
+    }
+    .artwork-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(32px, 4vw, 56px);
+      letter-spacing: 2px;
+      color: #000000;
+      margin-bottom: 4px;
+      font-weight: 900;
+    }
+    .artwork-subtitle {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #0f0f0f;
+      margin-bottom: 20px;
+    }
+
+    .artwork-row.reverse .artwork-text {
+      text-align: right;
+    }
+    .artwork-row.reverse .artwork-field-label {
+      text-align: right;
+    }
+
+    .artwork-field {
+      margin-bottom: 24px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 16px;
+      height: auto; 
+    }
+    .artwork-field-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #0f0f0f;
+      margin-bottom: 10px;
+    }
+    .artwork-field-value {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #444;
+      margin: 0;
+      padding: 0;
+      word-wrap: break-word; 
+      overflow-wrap: break-word;
+    }
+
+    @media (max-width: 768px) {
+  .artwork-row,
+  .artwork-row.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+
+  .artwork-row.reverse .artwork-text,
+  .artwork-row.reverse .artwork-field-label,
+  .artwork-row.reverse .artwork-field-value,
+  .artwork-row.reverse .artwork-title,
+  .artwork-row.reverse .artwork-subtitle {
+    text-align: left;
+  }
+
+  .artwork-image-container {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+  .artwork-entry { padding: 40px 20px; }
+}
+  </style>
+</head>
+<body>
+  <div class="page-section">
+    <div class="container">
+      <nav>
+        <a class="nav-logo" href="home.html">SANCTITY</a>
+        <div class="nav-links">
+          <a href="home.html">HOME</a>
+          <a href="artworks.html">ARTWORKS</a>
+          <a href="involved.html">SHARE YOUR STORY</a>
+          <a href="about.html">ABOUT US</a>
+          <a href="wall.html" class="nav-wall">FREEDOM WALL</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container content-panel page-intro">
+      <h1 class="section-heading">ARTWORK SECTION</h1>
+      <p>
+        Each artwork tells a story about real experiences and emotions. Through these pieces,
+        we are invited to see beyond appearances and reflect on how our actions affect the dignity of others.
+      </p>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container">
+
+  <div class="artwork-entry">
+    <div class="artwork-row">
+      <div class="artwork-image-container">
+        <a href="poster/1.png" target="_blank" class="artwork-image">
+          <img src="poster/1.png" alt="Artwork 1" loading="lazy">
+          <div class="view-button">Click to view</div>
+        </a>
+      </div>
+      <div class="artwork-text">
+        <h2 class="artwork-title">SAME WORTH, DIFFERENT FACE</h2>
+        <span class="artwork-subtitle">BY: Jewel Anne I. Julian</span>
+        <div class="artwork-field">
+          <div class="artwork-field-label">DESCRIPTION:</div>
+          <p class="artwork-field-value">
+            When a person enters the world, they have dignity that doesn’t need to be earned or proven. This reminds us that things like culture and history are not things to overcome, but should be sources of strength that deserve respect. When we recognize that worth is inherent, equality stops being a debate and becomes the standard we live by.
+          </p>
+        </div>
+        <div class="artwork-field">
+          <div class="artwork-field-label">ARTISTS' NOTE:</div>
+          <p class="artwork-field-value">
+            This image celebrates culture, identity, and inherent human worth. It is not meant to represent a single group, but to honor dignity across all people.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="artwork-entry">
+    <div class="artwork-row reverse">
+      <div class="artwork-image-container">
+        <a href="poster/2.png" target="_blank" class="artwork-image">
+          <img src="poster/2.png" alt="Artwork 2" loading="lazy">
+          <div class="view-button">Click to view</div>
+        </a>
+      </div>
+      <div class="artwork-text">
+        <h2 class="artwork-title">The Fabric of Fairness</h2>
+        <span class="artwork-subtitle">BY: Althea Julie B. Padua</span>
+        <div class="artwork-field">
+          <div class="artwork-field-label">DESCRIPTION:</div>
+          <p class="artwork-field-value">
+            This image serves as a powerful visual anthem for social cohesion and collective human dignity. By positioning diverse profiles representing various walks of life and professions against the silhouette of Lady Justice, the poster suggests that true national identity is rooted in the equitable treatment of every citizen. It moves beyond mere tolerance, asserting that our differences are not just features of our society, but the very foundation of our strength.<br><br>
+            The golden hue and the upward gaze of the figures symbolize a shared aspiration toward a higher standard of mutual respect. The central message, "Unity in Diversity is Our Identity," acts as a societal compass, reminding us that when justice is the backdrop of our lives, our unique backgrounds blend into a singular, unbreakable force. It is a call to recognize that the dignity of the laborer, the professional, and the worker are all threads of the same cloth proving that a nation is at its strongest when every individual’s worth is woven into the heart of its identity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="artwork-entry">
+    <div class="artwork-row">
+      <div class="artwork-image-container">
+        <a href="poster/3.png" target="_blank" class="artwork-image">
+          <img src="poster/3.png" alt="Artwork 3" loading="lazy">
+          <div class="view-button">Click to view</div>
+        </a>
+      </div>
+      <div class="artwork-text">
+        <h2 class="artwork-title">The Weight of Inaction </h2>
+        <span class="artwork-subtitle">BY: Jewel Anne I. Julian</span>
+        <div class="artwork-field">
+          <div class="artwork-field-label">DESCRIPTION:</div>
+          <p class="artwork-field-value">
+            Bullying doesn’t thrive only because of those who do harm, but also because of those who choose not to intervene. Looking away may feel like neutrality, but it allows harm to continue and silently validates it. Real change begins when we recognize that even small acts of courage, speaking up, stepping in, or refusing to ignore, can break that cycle.
+          </p>
+        </div>
+        <div class="artwork-field">
+          <div class="artwork-field-label">ARTISTS' NOTE:</div>
+          <p class="artwork-field-value">
+            This piece explores the role of those who choose to do nothing when witnessing bullying.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="artwork-entry">
+    <div class="artwork-row reverse">
+      <div class="artwork-image-container">
+        <a href="poster/4.png" target="_blank" class="artwork-image">
+          <img src="poster/4.png" alt="Artwork 4" loading="lazy">
+          <div class="view-button">Click to view</div>
+        </a>
+      </div>
+      <div class="artwork-text">
+        <h2 class="artwork-title">The Pillars of a Fair World</h2>
+        <span class="artwork-subtitle">BY: Althea Julie B. Padua</span>
+        <div class="artwork-field">
+          <div class="artwork-field-label">DESCRIPTION:</div>
+          <p class="artwork-field-value">
+            This image serves as a profound conceptual framework for the structural integrity of human dignity within a thriving society. The composition is divided into three distinct yet interdependent tiers, illustrating that dignity is not a singular achievement but a collective state of being maintained through constant effort. At the top, "Peace" is visualized through the gentle clasping of hands, signifying that the preservation of human worth begins with a foundational commitment to empathy and mutual support.<br><br>
+            This social harmony is fortified by the central pillar of "Justice," represented by the gavel, which asserts that dignity must be safeguarded by a fair and transparent legal system that holds all to the same standard. At the base, "Equality" is anchored by a diverse array of raised fists, symbolizing the resilient spirit of a people who demand that every individual—regardless of origin or status—is recognized as an equal partner in the national narrative. Collectively, the image argues that when these three forces are aligned, they form an unbreakable architecture of respect, proving that a nation’s true greatness is measured by the dignity it affords its most diverse citizens.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="artwork-entry">
+    <div class="artwork-row">
+      <div class="artwork-image-container">
+        <a href="poster/5.png" target="_blank" class="artwork-image">
+          <img src="poster/5.png" alt="Artwork 5" loading="lazy">
+          <div class="view-button">Click to view</div>
+        </a>
+      </div>
+      <div class="artwork-text">
+        <h2 class="artwork-title">Where We Stand</h2>
+        <span class="artwork-subtitle">BY: Jewel Anne I. Julian</span>
+        <div class="artwork-field">
+          <div class="artwork-field-label">DESCRIPTION:</div>
+          <p class="artwork-field-value">
+            Equality is not about rising above others, but about removing the idea that anyone should be above or below in the first place. “Not above, not below, just equal” stands against systems and mindsets that place value on hierarchy instead of humanity. True fairness exists when everyone is given the same respect, opportunities, and voice. 
+          </p>
+        </div>
+        <div class="artwork-field">
+          <div class="artwork-field-label">ARTISTS' NOTE:</div>
+          <p class="artwork-field-value">
+            No person nor group should be placed above or below another. This invites viewers to rethink hierarchy and recognize the value of equal standing for all.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="artwork-entry">
+    <div class="artwork-row reverse">
+      <div class="artwork-image-container">
+        <a href="poster/6.png" target="_blank" class="artwork-image">
+          <img src="poster/6.png" alt="Artwork 6" loading="lazy">
+          <div class="view-button">Click to view</div>
+        </a>
+      </div>
+      <div class="artwork-text">
+        <h2 class="artwork-title">The Lens of Dignity</h2>
+        <span class="artwork-subtitle">BY: Althea Julie B. Padua</span>
+        <div class="artwork-field">
+          <div class="artwork-field-label">DESCRIPTION:</div>
+          <p class="artwork-field-value">
+            This image presents a dramatic visual contrast between the shadow of social decay and the illuminating light of empowerment. It is a cinematic story where the camera acts as a moral filter, exposing corruption as a destructive force that fractures the national fabric and marginalizes the human soul.<br><br>
+            The light projecting from the lens symbolizes a shift in focus, a choice to look past systemic brokenness and see the inherent dignity within every individual. This empowering gaze transforms the narrative, revealing scenes of shared struggle and restored community: children being nurtured, people caring for one another, and dignified work being honored. The final message is a powerful declaration: by centering our society on human dignity and protecting each other's worth, we restore individual lives and collectively create a more vibrant, resilient, and brighter nation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    </div>
+  </div>
+
+  <footer>
+    © 2026 SANCTITY — Project Dignidad · University of La Salette
+  </footer>
+
+</body>
+</html>

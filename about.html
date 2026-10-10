@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SANCTITY — About Us</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+
+  <style>
+    /* Background and Base */
+    body {
+      background: linear-gradient(180deg, rgba(74, 122, 74, 0.24), rgba(255, 255, 255, 0.94));
+    }
+
+    .page-content {
+      padding: 60px 40px;
+      max-width: 960px;
+      background: #d8d8d8;
+    }
+
+    .about-body {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #1a1a1a;
+      text-align: left;
+      margin-bottom: 28px;
+      font-weight: 500;
+    }
+
+    .subsection {
+      margin-bottom: 52px;
+    }
+
+    .sub-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(28px, 4vw, 52px);
+      letter-spacing: 2px;
+      color: #000000;
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+
+    .about-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .about-list li {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #1a1a1a;
+      padding-left: 20px;
+      position: relative;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .about-list li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #3a8a3a;
+    }
+
+    .team-section {
+      padding: 60px 40px 80px;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .team-intro-label {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #777;
+      margin-bottom: 6px;
+    }
+
+    .team-intro-desc {
+      font-size: 14px;
+      line-height: 1.8;
+      color: #555;
+      max-width: 700px;
+      margin-bottom: 40px;
+    }
+
+    .team-card {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 32px;
+      align-items: start;
+      padding: 32px;
+      margin-bottom: 16px;
+      background: #ffffff;
+      border: 1px solid rgba(15, 15, 15, 0.08);
+      border-bottom: none;
+    }
+
+    .team-card:last-child {
+      border-bottom: none;
+    }
+
+    .member-photo {
+      aspect-ratio: 1 / 1;
+      border: 2px solid #0f0f0f;
+      overflow: hidden;
+      background: #f0f0ea;
+    }
+
+    .member-photo img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .member-info {
+      padding-top: 8px;
+    }
+
+    .member-name {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #0f0f0f;
+      margin-bottom: 10px;
+    }
+
+    .member-desc {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.8;
+      color: #3a8a3a; /* Subtle color shift to differentiate role */
+    }
+
+    .member-bio {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #222;
+      margin-top: 12px;
+      text-align: left;
+      /* Limits width and centers the block while keeping text left-aligned */
+      max-width: 600px; 
+      word-break: break-word;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .page-content { padding: 40px 20px; }
+      .team-section { padding: 0 20px 60px; }
+      .team-card { grid-template-columns: 1fr; }
+      .member-photo { width: 100%; max-width: 200px; }
+      .member-bio { max-width: 100%; } /* Bio fills the card on mobile */
+    }
+  </style>
+</head>
+<body>
+  <div class="page-section">
+    <div class="container">
+      <nav>
+        <a class="nav-logo" href="home.html">SANCTITY</a>
+        <div class="nav-links">
+          <a href="home.html">HOME</a>
+          <a href="artworks.html">ARTWORKS</a>
+          <a href="involved.html">SHARE YOUR STORY</a>
+          <a href="about.html">ABOUT US</a>
+          <a href="wall.html" class="nav-wall">FREEDOM WALL</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container content-panel page-content">
+      <h1 class="section-heading">ABOUT US</h1>
+
+    <p class="about-body">
+      Sanctity is a student-led advocacy website that promotes awareness of human dignity
+      through digital art and reflection. It was created as a space where stories, creativity,
+      and values come together to encourage respect, empathy, and understanding in everyday life.
+    </p>
+
+    <p class="about-body">
+      Behind this project is Project Dignidad, a group of students from the University of La Salette
+      committed to promoting the value of every human person. Inspired by Salettinian ideals, the team
+      believes that dignity is not something earned, but something that every individual already possesses.
+    </p>
+
+    <div class="subsection">
+      <h2 class="sub-heading">OUR MISSION</h2>
+      <p class="about-body">
+        Our mission is to inspire people, especially students, to recognize and respect human dignity
+        in both physical and digital spaces. Through art and storytelling, we aim to encourage kindness,
+        inclusivity, and responsible behavior.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <h2 class="sub-heading">OUR VISION</h2>
+      <p class="about-body">
+        We envision a community where every person feels seen, heard, and valued—regardless of
+        their background, identity, or circumstances.
+      </p>
+    </div>
+
+    <div class="subsection">
+      <h2 class="sub-heading">WHAT WE DO</h2>
+      <ul class="about-list">
+        <li>Create and share digital artworks that reflect real-life experiences</li>
+        <li>Promote awareness of respect, empathy, and inclusivity</li>
+        <li>Encourage reflection on everyday actions and choices</li>
+        <li>Provide a platform for student voices and perspectives</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h2 class="sub-heading">CORE VALUES</h2>
+      <ul class="about-list">
+        <li>Dignity — Every person has inherent worth</li>
+        <li>Empathy — We listen before we judge</li>
+        <li>Respect — We treat others as we want to be treated</li>
+        <li>Inclusivity — No one is left behind</li>
+      </ul>
+    </div>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container content-panel team-section">
+      <h2 class="sub-heading">MEET THE TEAM</h2>
+    <p class="team-intro-label">PROJECT DIGNIDAD</p>
+    <p class="team-intro-desc">
+      We are a group of students from the University of La Salette brought together by a shared goal—
+      to promote respect, empathy, and awareness of human dignity through creativity and collaboration.
+    </p>
+
+    <div class="team-cards">
+
+      <div class="team-card">
+        <div class="member-photo">
+          <img src="profile/jewel.jpg" alt="Jewel Anne I. Julian">
+        </div>
+        <div class="member-info">
+          <p class="member-name">Jewel Anne I. Julian</p>
+          <p class="member-desc">Creative Director</p>
+          <p class="member-bio">
+            I am the Creative Director for this advocacy, in charge of designing and creating artworks that reflect 
+            the message of human dignity. I also help organize tasks within the team, ensuring that everyone works 
+            together effectively and that the project stays aligned with its goals.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="member-photo">
+          <img src="profile/jhea.jpg" alt="Jhea Janniell M. Lopez">
+        </div>
+        <div class="member-info">
+          <p class="member-name">Jhea Janniell M. Lopez</p>
+          <p class="member-desc">Content Writer</p>
+          <p class="member-bio"> 
+            Hi, I’m a creative content creator focused on sharing meaningful content that promotes human dignity, 
+            compassion, inclusivity, and the value of every individual’s voice.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="member-photo">
+          <img src="profile/cy.jpg" alt="Marz Cylene C. De Jesus">
+        </div>
+        <div class="member-info">
+          <p class="member-name">Marz Cylene C. De Jesus</p>
+          <p class="member-desc">Researcher</p>
+          <p class="member-bio">
+            Dedicated researcher committed to promoting human dignity through respect, fairness, and equal value for all people.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="member-photo">
+          <img src="profile/aj.jpg" alt="Althea Julie B. Padua">
+        </div>
+        <div class="member-info">
+          <p class="member-name">Althea Julie B. Padua</p>
+          <p class="member-desc">Digital Artist</p>
+          <p class="member-bio">
+            I draw things people can’t explain but somehow relate to. Digital artist specializing in creative visuals with personality and purpose.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="member-photo">
+          <img src="profile/xhy.jpg" alt="Xhyrone Wayne N. Malapote">
+        </div>
+        <div class="member-info">
+          <p class="member-name">Xhyrone Wayne N. Malapote</p>
+          <p class="member-desc">Web Developer</p>
+          <p class="member-bio">
+            I am the Web Developer for this project, responsible for building an inclusive digital platform that upholds
+            human dignity through accessible design. I ensure that the technical framework is user-friendly and reliable,
+            creating a seamless space where our mission can reach and connect with people effectively.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="member-photo">
+          <img src="profile/loyd.jpg" alt="John Lloyd P. Parong">
+        </div>
+        <div class="member-info">
+          <p class="member-name">John Lloyd P. Parong</p>
+          <p class="member-desc">Communications & Outreach</p>
+          <p class="member-bio">
+            I am a communicator focused on outreach and community engagement. I am passionate about sharing ideas,
+            building connections, and promoting understanding through clear and meaningful communication.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-card">
+        <div class="member-photo">
+          <img src="profile/ian.jpg" alt="Francis Ian P. Parong">
+        </div>
+        <div class="member-info">
+          <p class="member-name">Francis Ian P. Parong</p>
+          <p class="member-desc">Communications & Outreach</p>
+          <p class="member-bio">
+            I am the Communications & Outreach member of this project, responsible for building strong communication and connection 
+            with the community. I help share important information clearly and ensure that users understand the purpose and benefits 
+            of the system. I also support coordination, promotion, and user engagement to create a friendly and accessible experience 
+            for everyone involved.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    © 2026 SANCTITY — Project Dignidad · University of La Salette
+  </footer>
+
+</body>
+</html>

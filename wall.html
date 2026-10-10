@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SANCTITY — Freedom Wall</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <style>
+    /* Background and Base */
+    body {
+      background: linear-gradient(180deg, rgba(74, 122, 74, 0.24), rgba(255, 255, 255, 0.94));
+    }
+
+    .wall-header {
+      padding: 60px 40px 40px;
+      background: #d8d8d8;
+      border-bottom: 2px solid #0f0f0f;
+    }
+
+    .wall-header .section-heading {
+      margin-bottom: 12px;
+    }
+
+    .wall-subtext {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #1a1a1a;
+      max-width: 660px;
+      font-weight: 500;
+    }
+
+    .wall-count {
+      margin-top: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #3a8a3a;
+    }
+
+    .wall-grid {
+      padding: 48px 40px 80px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: start;
+      background: rgba(255, 255, 255, 0.5);
+    }
+
+    .post-card {
+      border: 2px solid #0f0f0f;
+      padding: 28px;
+      background: #ffffff;
+      position: relative;
+      break-inside: avoid;
+    }
+
+    .post-card:nth-child(3n+1) { background: #ffffff; }
+    .post-card:nth-child(3n+2) { background: #f9f9f4; }
+    .post-card:nth-child(3n+3) { background: #f0f9f0; }
+
+    .post-quote-mark {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 64px;
+      line-height: 0.6;
+      color: #e0e0d8;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .post-message {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #000000;
+      margin-bottom: 24px;
+      word-break: break-word;
+      font-weight: 500;
+    }
+
+    .post-divider {
+      border: none;
+      border-top: 1px solid #ddd;
+      margin-bottom: 16px;
+    }
+
+    .post-name {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #0f0f0f;
+      margin-bottom: 4px;
+    }
+
+    .post-role {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #3a8a3a;
+      border: 1px solid #3a8a3a;
+      padding: 2px 8px;
+      margin-bottom: 8px;
+    }
+
+    .post-date {
+      font-size: 11px;
+      color: #aaa;
+      letter-spacing: 1px;
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 80px 40px;
+      border: 2px dashed #ddd;
+    }
+
+    .empty-state-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 40px;
+      color: #ccc;
+      margin-bottom: 12px;
+    }
+
+    .empty-state-text {
+      font-size: 14px;
+      color: #aaa;
+      margin-bottom: 24px;
+    }
+
+    .empty-state-link {
+      display: inline-block;
+      background: #0f0f0f;
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 12px 28px;
+      text-decoration: none;
+    }
+    .empty-state-link:hover { background: #3a8a3a; }
+
+    .clear-btn {
+      display: none;
+      margin: 0 40px 24px;
+      background: none;
+      border: 1px solid #ddd;
+      color: #aaa;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    .clear-btn:hover { border-color: #f00; color: #f00; }
+
+    @media (max-width: 1024px) {
+      .wall-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .wall-grid { grid-template-columns: 1fr; padding: 32px 20px 60px; }
+      .wall-header { padding: 40px 20px 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-section">
+    <div class="container">
+      <nav>
+        <a class="nav-logo" href="home.html">SANCTITY</a>
+        <div class="nav-links">
+          <a href="home.html">HOME</a>
+          <a href="artworks.html">ARTWORKS</a>
+          <a href="involved.html">SHARE YOUR STORY</a>
+          <a href="about.html">ABOUT US</a>
+          <a href="wall.html" class="nav-wall">FREEDOM WALL</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container content-panel wall-header">
+      <h1 class="section-heading">FREEDOM WALL</h1>
+    <p class="wall-subtext">
+      A space for every voice. These are the words, stories, and messages shared by our community.
+      Want to add yours? Head to <a href="involved.html" style="color:#3a8a3a;font-weight:700;">SHARE YOUR STORY</a>
+      and submit your message.
+    </p>
+    <p class="wall-count" id="wall-count"></p>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="container">
+      <button class="clear-btn" id="clear-btn" onclick="clearAll()">
+        Clear All Posts
+      </button>
+      <div class="wall-grid" id="wall-grid"></div>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 SANCTITY — Project Dignidad · University of La Salette
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
+    import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyB8iTg5K51M21cqGdVsuiSCpMHt4nyIXFM",
+      authDomain: "sanctity-9cd57.firebaseapp.com",
+      projectId: "sanctity-9cd57",
+      storageBucket: "sanctity-9cd57.firebasestorage.app",
+      messagingSenderId: "756282010970",
+      appId: "1:756282010970:web:9387283c587c6adf6c5763",
+      measurementId: "G-53FY6NLZ2B"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    function sanitize(str) {
+      if (!str) return "";
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function formatDate(timestamp) {
+      if (!timestamp) return "Just now";
+      const date = timestamp.toDate();
+      return date.toLocaleDateString('en-US', {
+        year: 'numeric', month: 'long', day: 'numeric'
+      });
+    }
+
+    const grid = document.getElementById('wall-grid');
+    const countLabel = document.getElementById('wall-count');
+    
+    const wallQuery = query(collection(db, "sanctity_wall_posts"), orderBy("createdAt", "desc"));
+
+    onSnapshot(wallQuery, (snapshot) => {
+      const posts = [];
+      snapshot.forEach((doc) => {
+        posts.push(doc.data());
+      });
+
+      if (posts.length > 0) {
+        countLabel.textContent = posts.length + (posts.length === 1 ? ' message' : ' messages') + ' on the wall';
+      } else {
+        countLabel.textContent = '';
+      }
+
+      if (posts.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <div class="empty-state-title">NO MESSAGES YET</div>
+            <p class="empty-state-text">
+              Be the first to share your voice.<br>
+              Submit a message through the Get Involved page.
+            </p>
+            <a class="empty-state-link" href="involved.html">GET INVOLVED</a>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = posts.map((post) => {
+        return `
+          <div class="post-card">
+            <span class="post-quote-mark">"</span>
+            <p class="post-message">${sanitize(post.message)}</p>
+            <hr class="post-divider"/>
+            <p class="post-name">${sanitize(post.name)}</p>
+            <span class="post-date">${formatDate(post.createdAt)}</span>
+          </div>
+        `;
+      }).join('');
+    });
+  </script>
+</body>
+</html>
