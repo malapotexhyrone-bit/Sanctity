@@ -1,0 +1,37 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isValidWallPost() {
+      let post = request.resource.data;
+
+      return post.keys().hasAll(['name', 'message', 'createdAt'])
+        && post.keys().hasOnly(['name', 'message', 'createdAt'])
+        && post.name is string
+        && post.name.size() >= 1
+        && post.name.size() <= 80
+        && post.message is string
+        && post.message.size() >= 1
+        && post.message.size() <= 1000
+        && post.createdAt is timestamp
+        && post.createdAt == request.time;
+    }
+
+    match /sanctity_wall_posts/{postId} {
+      // Individual posts are public. Collection queries must be explicitly bounded.
+      allow get: if true;
+      allow list: if request.query.limit != null && request.query.limit <= 100;
+
+      // Anonymous creation is intentional, but the document schema is fixed.
+      allow create: if isValidWallPost();
+
+      // Public clients may never edit or remove wall posts.
+      allow update, delete: if false;
+    }
+
+    // Everything not explicitly allowed above is denied.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

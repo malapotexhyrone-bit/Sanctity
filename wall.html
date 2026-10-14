@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="firebase-app-check-site-key" content=""/>
   <title>SANCTITY — Freedom Wall</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet"/>
@@ -144,20 +145,6 @@
     }
     .empty-state-link:hover { background: #3a8a3a; }
 
-    .clear-btn {
-      display: none;
-      margin: 0 40px 24px;
-      background: none;
-      border: 1px solid #ddd;
-      color: #aaa;
-      font-size: 11px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      padding: 8px 16px;
-      cursor: pointer;
-    }
-    .clear-btn:hover { border-color: #f00; color: #f00; }
-
     @media (max-width: 1024px) {
       .wall-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -197,9 +184,6 @@
 
   <div class="page-section">
     <div class="container">
-      <button class="clear-btn" id="clear-btn" onclick="clearAll()">
-        Clear All Posts
-      </button>
       <div class="wall-grid" id="wall-grid"></div>
     </div>
   </div>
@@ -209,41 +193,78 @@
   </footer>
 
   <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-app.js";
-    import { getFirestore, collection, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyB8iTg5K51M21cqGdVsuiSCpMHt4nyIXFM",
-      authDomain: "sanctity-9cd57.firebaseapp.com",
-      projectId: "sanctity-9cd57",
-      storageBucket: "sanctity-9cd57.firebasestorage.app",
-      messagingSenderId: "756282010970",
-      appId: "1:756282010970:web:9387283c587c6adf6c5763",
-      measurementId: "G-53FY6NLZ2B"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-
-    function sanitize(str) {
-      if (!str) return "";
-      const div = document.createElement('div');
-      div.textContent = str;
-      return div.innerHTML;
-    }
+    import { db, POST_LIMITS } from "./app.js";
+    import { collection, query, orderBy, onSnapshot, limit } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore.js";
 
     function formatDate(timestamp) {
-      if (!timestamp) return "Just now";
-      const date = timestamp.toDate();
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric', month: 'long', day: 'numeric'
-      });
+      if (!timestamp || typeof timestamp.toDate !== "function") return "Just now";
+
+      try {
+        return timestamp.toDate().toLocaleDateString("en-US", {
+          year: "numeric", month: "long", day: "numeric"
+        });
+      } catch {
+        return "Date unavailable";
+      }
     }
 
     const grid = document.getElementById('wall-grid');
     const countLabel = document.getElementById('wall-count');
-    
-    const wallQuery = query(collection(db, "sanctity_wall_posts"), orderBy("createdAt", "desc"));
+
+    function renderEmptyState() {
+      const emptyState = document.createElement("div");
+      emptyState.className = "empty-state";
+
+      const title = document.createElement("div");
+      title.className = "empty-state-title";
+      title.textContent = "NO MESSAGES YET";
+
+      const message = document.createElement("p");
+      message.className = "empty-state-text";
+      message.append("Be the first to share your voice.", document.createElement("br"));
+      message.append("Submit a message through the Get Involved page.");
+
+      const link = document.createElement("a");
+      link.className = "empty-state-link";
+      link.href = "involved.html";
+      link.textContent = "GET INVOLVED";
+
+      emptyState.append(title, message, link);
+      grid.replaceChildren(emptyState);
+    }
+
+    function createPostCard(post) {
+      const card = document.createElement("div");
+      card.className = "post-card";
+
+      const quote = document.createElement("span");
+      quote.className = "post-quote-mark";
+      quote.textContent = '"';
+
+      const message = document.createElement("p");
+      message.className = "post-message";
+      message.textContent = typeof post.message === "string" ? post.message : "";
+
+      const divider = document.createElement("hr");
+      divider.className = "post-divider";
+
+      const name = document.createElement("p");
+      name.className = "post-name";
+      name.textContent = typeof post.name === "string" ? post.name : "";
+
+      const date = document.createElement("span");
+      date.className = "post-date";
+      date.textContent = formatDate(post.createdAt);
+
+      card.append(quote, message, divider, name, date);
+      return card;
+    }
+
+    const wallQuery = query(
+      collection(db, "sanctity_wall_posts"),
+      orderBy("createdAt", "desc"),
+      limit(POST_LIMITS.wallResults)
+    );
 
     onSnapshot(wallQuery, (snapshot) => {
       const posts = [];
@@ -258,30 +279,21 @@
       }
 
       if (posts.length === 0) {
-        grid.innerHTML = `
-          <div class="empty-state">
-            <div class="empty-state-title">NO MESSAGES YET</div>
-            <p class="empty-state-text">
-              Be the first to share your voice.<br>
-              Submit a message through the Get Involved page.
-            </p>
-            <a class="empty-state-link" href="involved.html">GET INVOLVED</a>
-          </div>
-        `;
+        renderEmptyState();
         return;
       }
 
-      grid.innerHTML = posts.map((post) => {
-        return `
-          <div class="post-card">
-            <span class="post-quote-mark">"</span>
-            <p class="post-message">${sanitize(post.message)}</p>
-            <hr class="post-divider"/>
-            <p class="post-name">${sanitize(post.name)}</p>
-            <span class="post-date">${formatDate(post.createdAt)}</span>
-          </div>
-        `;
-      }).join('');
+      const fragment = document.createDocumentFragment();
+      posts.forEach((post) => fragment.append(createPostCard(post)));
+      grid.replaceChildren(fragment);
+    }, (error) => {
+      console.error("Unable to load Freedom Wall posts:", error);
+      countLabel.textContent = "";
+
+      const errorMessage = document.createElement("p");
+      errorMessage.className = "empty-state-text";
+      errorMessage.textContent = "The Freedom Wall is temporarily unavailable. Please try again later.";
+      grid.replaceChildren(errorMessage);
     });
   </script>
 </body>
